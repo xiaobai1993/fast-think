@@ -1,0 +1,7 @@
+.DS_Store
+!.gitignore
+!.gitattributes
+/.idea
+/.git
+/composer.lock
+/test.php

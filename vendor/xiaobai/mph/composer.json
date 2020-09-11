@@ -1,0 +1,18 @@
+{
+    "name": "xiaobai/mph",
+    "description": "一个基于thinkphp的command类实现的用于给model自动增加或者更新属性注释的工具。",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "大花猫",
+            "email": "824955445@qq.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "xiaobai\\think\\command\\": "src"
+        }
+    }
+}

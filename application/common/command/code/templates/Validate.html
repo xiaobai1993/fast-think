@@ -1,0 +1,57 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: guodong
+ * Date: {{date}}
+ * Time: {{time}}
+ */
+
+namespace {{nameSpace}};;
+
+use app\common\lib\BaseValidate;
+
+class {{className}} extends BaseValidate
+{
+    /**
+     * 验证规则
+     * @var array
+     */
+    protected $rule = [
+{{rules}}
+    ];
+
+    protected $scene = [
+        'create' => [''],
+        'update' => ['{{pk}}']
+    ];
+}
+
+/*
+
+##
+
+### 业务功能
+
+添加或者修改{{tableDesc}}
+
+### 接口地址
+
+`{{module}}/admin.{{controller}}/create|update`
+
+### 请求参数
+
+{{param_desc}}
+
+### 返回数据
+```
+{
+"code": 0,
+"msg": "success",
+"data": {
+"id":123214
+}
+}
+```
+*/
+
+
