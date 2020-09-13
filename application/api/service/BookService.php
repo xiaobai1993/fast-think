@@ -99,6 +99,7 @@ class BookService extends BaseService
              * @var $item BookModel
              */
             $item->press_data->id;//编辑器代码提示优化，点击支持跳转
+
         }
         return $list;
     }

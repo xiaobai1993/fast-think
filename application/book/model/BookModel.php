@@ -9,10 +9,10 @@ use think\Model;
  * @property $id   图书id
  * @property $title   图书标题
  * @property $press_id   出版社id
- * @property  PressModel  $press_data     出版社信息
- * @property $AuthorModel[]   author_data   作者信息
- * @property $BookCommentModel[]   comment_data   图书的评论
- * @property $AuthorBookRelationModel[]   author_relation_data   图书和 图书作者关联表的关联，用于搜索减少连表
+ * @property PressModel   $press_data   出版社信息
+ * @property AuthorModel[]   $author_data   作者信息
+ * @property BookCommentModel[]   $comment_data   图书的评论
+ * @property AuthorBookRelationModel[]   $author_relation_data   图书和 图书作者关联表的关联，用于搜索减少连表
 */
 
 class BookModel extends Model

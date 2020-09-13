@@ -22,20 +22,18 @@ class ModelProperty extends Command
 {
     protected static $tabs = "   ";
 
-    protected function configure()
-    {
+    protected function configure() {
         $this->setName('amp')
             ->addArgument('model', Argument::OPTIONAL, "模型的名字")
             ->addOption('override', null, Option::VALUE_OPTIONAL, '是否强制覆盖')
             ->setDescription('模型自动增加属性注释');
     }
 
-    protected function execute(Input $input, Output $output)
-    {
+    protected function execute(Input $input, Output $output) {
         $modelPath = $input->getArgument('model');
-        if (defined('APP_PATH')){
+        if (defined('APP_PATH')) {
             $path = APP_PATH . $modelPath;
-        }else{
+        } else {
             $path = \think\App::getInstance()->getAppPath() . $modelPath;
         }
         if (is_dir($path)) {
@@ -45,25 +43,24 @@ class ModelProperty extends Command
                 }
                 $filePath = $path . "/" . $value;
                 if (is_file($filePath)) {
-                    try{
+                    try {
                         $this->parseSingleFile($filePath);
-                    }catch (\Exception $exception){
-                        echo  $exception->getMessage();
+                    } catch (\Exception $exception) {
+                        echo $exception->getMessage();
                     }
                 } else {
                     continue;//目录嵌套暂时不处理
                 }
             }
-        }elseif (is_file($path)){
+        } elseif (is_file($path)) {
             $this->parseSingleFile($path);
-        }else{
+        } else {
             exception("$path 文件不存在");
         }
     }
 
 
-    public function parseSingleFile($filePath)
-    {
+    public function parseSingleFile($filePath) {
         $fileContent = file_get_contents($filePath);
         if (preg_match('/namespace (.*?);/', $fileContent, $spaceMatch)) {
             $spaceName = $spaceMatch[1];
@@ -100,8 +97,7 @@ class ModelProperty extends Command
      * @param $comments
      * @return string
      */
-    protected function parseTableAttr(Model $model, &$comments)
-    {
+    protected function parseTableAttr(Model $model, &$comments) {
         $tableSql = $model->query("show create table " . $model->getTable())[0]['Create Table'];
         preg_match_all("#`(.*?)`(.*?) COMMENT\s*'(.*?)',#", $tableSql, $matches);
         $fields = $matches[1];
@@ -119,8 +115,7 @@ class ModelProperty extends Command
      * @param $model
      * @param $comments
      */
-    protected function parseClass($model, &$comments)
-    {
+    protected function parseClass($model, &$comments) {
         $classReflect = new \ReflectionClass($model);
         $filePath = $classReflect->getFileName();
         if ($filePath) {
@@ -148,9 +143,9 @@ class ModelProperty extends Command
                         $relationModel = $match[2];
                         $propertyName = Loader::parseName($methodName, 0, false);
                         if ($relation == 'hasMany' || $relation == 'belongsToMany') {
-                            $comments[] = " * @property $" . $relationModel . "[]" . self::$tabs . $propertyName . self::$tabs . $this->getDocTitle($method->getDocComment());
+                            $comments[] = " * @property " . $relationModel . "[]" . self::$tabs . "$" . $propertyName . self::$tabs . $this->getDocTitle($method->getDocComment());
                         } else {
-                            $comments[] = " * @property $" .  $relationModel . self::$tabs .$propertyName . self::$tabs . $this->getDocTitle($method->getDocComment());
+                            $comments[] = " * @property " . $relationModel . self::$tabs . "$" . $propertyName . self::$tabs . $this->getDocTitle($method->getDocComment());
                         }
                     }
                 }
@@ -167,8 +162,7 @@ class ModelProperty extends Command
      * @param $end
      * @return string
      */
-    protected function readFile($file_name, $start, $end)
-    {
+    protected function readFile($file_name, $start, $end) {
         $limit = $end - $start;
         $f = new \SplFileObject($file_name, 'r');
         $f->seek($start);
@@ -185,8 +179,7 @@ class ModelProperty extends Command
      * @param $docComment
      * @return string
      */
-    protected function getDocTitle($docComment)
-    {
+    protected function getDocTitle($docComment) {
         if ($docComment !== false) {
             $docCommentArr = explode("\n", $docComment);
             $comment = trim($docCommentArr[1]);
