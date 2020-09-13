@@ -10,7 +10,7 @@ fast-think是基于thinkphp封装的，用于快速高效的进行业务开发�
 
 #### 框架架构
 
-![7581599994844_.pic_hd.jpg](https://upload-images.jianshu.io/upload_images/2747346-92e76a7fb53e0f22.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![7581599994844_.pic_hd.jpg](https://github.com/xiaobai1993/fast-think/blob/master/doc/struct.jpg)
 
 - module：模块，一般按照业务划分，比如案例里面的book就可以认为是图书模块，其他的可以有user、shop等等。这些模块的controller/admin 放后台的业务功能。模块相关的对客户端用户提供的功能都在api下。比如案例里面的api/book是图书模块对客户端的接口。
 
@@ -103,10 +103,10 @@ http://tp.test.cn/api/book.book/lists?title=C%E7%A8%8B%E5%BA%8F&author_id=3&pres
 ```
 如果需要文档，只需要在后面多增加一个参数make_doc=2，就会显示，该有的注释都有，全都来自于代码注释，如果对文档的不满意，可以对文档模板进行改造。如果不希望文档直接输出到浏览器，可以选择make_doc=1,文档会生成在public目录下的comment.txt文件，里面是markdown格式的语法。因为url和代码目录是有层次的，所以可以考虑将文档输出到一个和代码目录层级一样的目录下面，更加方便查找。
 
-![代码自动生成.gif](https://upload-images.jianshu.io/upload_images/2747346-978addb5751e794b.gif?imageMogr2/auto-orient/strip)
+![代码自动生成.gif](https://github.com/xiaobai1993/fast-think/blob/master/doc/auto_code.gif)
 
-![模型注释自动生成.gif](https://upload-images.jianshu.io/upload_images/2747346-bae827502f3f4796.gif?imageMogr2/auto-orient/strip)
+![模型注释自动生成.gif](https://github.com/xiaobai1993/fast-think/blob/master/doc/auto_model_property.gif)
 
 
-![文档自动生成.gif](https://upload-images.jianshu.io/upload_images/2747346-de409d29661b6216.gif?imageMogr2/auto-orient/strip)
+![文档自动生成.gif](https://github.com/xiaobai1993/fast-think/blob/master/doc/auto_doc.gif)
 
