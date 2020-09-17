@@ -5,3 +5,4 @@
 /.git
 /composer.lock
 /test.php
+/runtime
