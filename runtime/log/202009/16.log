@@ -1,0 +1,39 @@
+---------------------------------------------------------------
+
+[2020-09-16T23:34:13+08:00] 127.0.0.1 GET tp.test.cn/api/book.book/lists?title=C%E7%A8%8B%E5%BA%8F&author_id=4&press_name=%E4%BA%BA%E6%B0%91%E5%87%BA%E7%89%88&comment=%E4%B8%8D%E9%94%99
+[运行时间：0.096392s] [吞吐率：10.37req/s] [内存消耗：4,402.83kb] [文件加载：87]
+[ info ] [ LANG ] /Users/didi/Desktop/fast-think/thinkphp/lang/zh-cn.php
+[ info ] [ LANG ] /Users/didi/Desktop/fast-think/application/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tp.test.cn/api/book.book/lists?title=C%E7%A8%8B%E5%BA%8F&author_id=4&press_name=%E4%BA%BA%E6%B0%91%E5%87%BA%E7%89%88&comment=%E4%B8%8D%E9%94%99&make_doc=2',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'tp.test.cn',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'title' => 'C程序',
+  'author_id' => '4',
+  'press_name' => '人民出版',
+  'comment' => '不错',
+)
+[ info ] [ DB ] INIT mysql
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001209s ] mysql:host=127.0.0.1;port=3306;dbname=local;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `author_book_relation` [ RunTime:0.001163s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `book_comment` [ RunTime:0.000867s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `book` [ RunTime:0.001102s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM ( SELECT count(*) AS think_count FROM `book` INNER JOIN `press` `pressData` ON (pressData.id=book.press_id) INNER JOIN `author_book_relation` `authorRelationData` ON (authorRelationData.book_id=book.id) INNER JOIN `book_comment` `commentData` ON (commentData.book_id=book.id) WHERE  `book`.`title` LIKE '%C程序%'  AND `pressData`.`name` LIKE '%人民出版%'  AND `authorRelationData`.`author_id` = '4'  AND `commentData`.`content` LIKE '%不错%' GROUP BY `book`.`id` ) `_group_count_` [ RunTime:0.000839s ]
+[ sql ] [ SQL ] SELECT `book`.`id`,`book`.`title`,`book`.`press_id` FROM `book` INNER JOIN `press` `pressData` ON (pressData.id=book.press_id) INNER JOIN `author_book_relation` `authorRelationData` ON (authorRelationData.book_id=book.id) INNER JOIN `book_comment` `commentData` ON (commentData.book_id=book.id) WHERE  `book`.`title` LIKE '%C程序%'  AND `pressData`.`name` LIKE '%人民出版%'  AND `authorRelationData`.`author_id` = '4'  AND `commentData`.`content` LIKE '%不错%' GROUP BY `book`.`id` ORDER BY `book`.`id` DESC LIMIT 0,15 [ RunTime:0.000601s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `author` [ RunTime:0.000791s ]
+[ sql ] [ SQL ] SELECT `author`.*,`pivot`.`id` AS `pivot__id`,`pivot`.`author_id` AS `pivot__author_id`,`pivot`.`book_id` AS `pivot__book_id`,`pivot`.`is_main` AS `pivot__is_main` FROM `author` INNER JOIN `author_book_relation` `pivot` ON `pivot`.`author_id`=`author`.`id` WHERE  `pivot`.`book_id` = 3 [ RunTime:0.000701s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `press` [ RunTime:0.000653s ]
+[ sql ] [ SQL ] SELECT * FROM `press` WHERE  `id` = 1 [ RunTime:0.000362s ]
+[ sql ] [ SQL ] SELECT * FROM `book_comment` WHERE  `book_id` = 3 [ RunTime:0.000384s ]
