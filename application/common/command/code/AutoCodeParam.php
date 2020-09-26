@@ -135,28 +135,37 @@ class AutoCodeParam extends DTO
         return APP_PATH . $this->module . "/";
     }
 
-    public function getModeFilePath()
+    public function getModelFilePath()
     {
-        return $this->getBaseDirPath() . "model/" . $this->getModelName() . ".php";
+        return $this->autoMakeDir("model").$this->getModelName() . ".php";
     }
 
     public function getValidateFilePath()
     {
-        return $this->getBaseDirPath() . "validate/" . $this->getValidateName() . ".php";
+        return $this->autoMakeDir("validate").$this->getValidateName() . ".php";
     }
 
     public function getControllerFilePath()
     {
-        return $this->getBaseDirPath() . "controller/admin/" . $this->getControllerName() . ".php";
+        return $this->autoMakeDir( "controller/admin").$this->getControllerName() . ".php";
     }
 
     public function getServiceFilePath()
     {
-        return $this->getBaseDirPath() . "service/" . $this->getServiceName() . ".php";
+        return $this->autoMakeDir("service").$this->getServiceName() . ".php";
     }
 
     public function getDtoFilePath()
     {
-        return $this->getBaseDirPath() . "logic/" . $this->getDtoName() . ".php";
+        return $this->autoMakeDir("logic").$this->getDtoName() . ".php";
+    }
+
+    public function autoMakeDir($dirName)
+    {
+       $dir = $this->getBaseDirPath().$dirName."/";
+       if (!is_dir($dir)){
+           mkdir($dir,0755,true);
+       }
+       return $dir;
     }
 }

@@ -348,7 +348,7 @@ class AutoCodeCommand extends Command
         $service = AutoCodeCommand::createService($param);
 
         !is_file($param->getDtoFilePath()) ? file_put_contents($param->getDtoFilePath(), $dto) : $output->writeln("DTO文件已存在，没有重新生成");
-        !is_file($param->getModeFilePath()) ? file_put_contents($param->getModeFilePath(), $model) : $output->writeln("Model文件已存在，没有重新生成");
+        !is_file($param->getModelFilePath()) ? file_put_contents($param->getModelFilePath(), $model) : $output->writeln("Model文件已存在，没有重新生成");
         !is_file($param->getValidateFilePath()) ? file_put_contents($param->getValidateFilePath(), $validate) : $output->writeln("Validate文件已存在，没有重新生成");
         !is_file($param->getControllerFilePath()) ? file_put_contents($param->getControllerFilePath(), $controller) : $output->writeln("Controller文件已存在，没有重新生成");
         !is_file($param->getServiceFilePath()) ? file_put_contents($param->getServiceFilePath(), $service) : $output->writeln("Service文件已存在，没有重新生成");
