@@ -25,8 +25,9 @@ class Book extends BaseController
 {
     /**
      * 图书列表
-     * @param Request $request
+     * @param Request $requestq
      * @return \think\Response\Json
+     * @deprecated (过期信息说明)
      */
     public function lists(Request $request)
     {

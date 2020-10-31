@@ -371,9 +371,27 @@ class AutoDocument
         if ($docComment !== false) {
             $docCommentArr = explode("\n", $docComment);
             $comment = trim($docCommentArr[1]);
-            return trim(substr($comment, strpos($comment, '*') + 1));
+            $deprecated = $this->parseDeprecatedInfo($docComment);
+            $info = trim(substr($comment, strpos($comment, '*') + 1));
+            if ($deprecated !==  false){
+                return "~~".$info."~~"."($deprecated)";
+            }
+            return $info;
         }
         return '';
+    }
+
+    /**
+     * 扫描deprecated注释信息
+     * @param $docComment
+     * @return bool
+     */
+    private function parseDeprecatedInfo($docComment)
+    {
+        if (preg_match("#deprecated.*?[\(|（](.*?)[\)|）]#",$docComment,$matches)){
+            return $matches[1];
+        }
+        return false;
     }
 
     /**

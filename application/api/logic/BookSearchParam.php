@@ -32,6 +32,7 @@ class BookSearchParam extends DTO
     /**
      * 出版社名称
      * @var
+     * @deprecated (属性字段过期测试)
      */
     public $press_name;
 
