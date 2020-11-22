@@ -18,7 +18,6 @@ use think\Model;
 class BookModel extends Model
 {
     protected $table = 'book';
-
     /**
      * 出版社信息
      * @return \think\model\relation\HasOne

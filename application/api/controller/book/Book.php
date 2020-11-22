@@ -25,9 +25,10 @@ class Book extends BaseController
 {
     /**
      * 图书列表
-     * @param Request $requestq
+     * 提供给客户端的图书列表页、图书搜索页使用
+     * @param Request $request
      * @return \think\Response\Json
-     * @deprecated (过期信息说明)
+     * @deprecated (这个接口不能满足业务需求过期了)
      */
     public function lists(Request $request)
     {

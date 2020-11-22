@@ -1,0 +1,222 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<h2><del>图书列表</del>(这个接口不能满足业务需求过期了)</h2>
+<h3>业务功能</h3>
+<p>提供给客户端的图书列表页、图书搜索页使用</p>
+<h3>接口地址 (GET)</h3>
+<p><code>/api/book.book/lists</code> </p>
+<h3>非路由地址（后台开发用）</h3>
+<p><code>api/book.book/lists</code></p>
+<blockquote>
+<p>测试地址 <a href="http://tp.test.cn/api/book.book/lists?title=C%E7%A8%8B%E5%BA%8F&amp;author_id=4&amp;press_name=%E4%BA%BA%E6%B0%91%E5%87%BA%E7%89%88&amp;comment=%E4%B8%8D%E9%94%99">http://tp.test.cn/api/book.book/lists?title=C%E7%A8%8B%E5%BA%8F&amp;author_id=4&amp;press_name=%E4%BA%BA%E6%B0%91%E5%87%BA%E7%89%88&amp;comment=%E4%B8%8D%E9%94%99</a></p>
+</blockquote>
+<h3>请求参数</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">参数名称</th>
+<th style="text-align: center;">是否必填</th>
+<th style="text-align: center;">参数类型</th>
+<th style="text-align: left;">案例</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">例如:<code>C程序</code></td>
+<td style="text-align: left;">图书标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">author_id</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">例如:<code>4</code></td>
+<td style="text-align: left;">图书作者id</td>
+</tr>
+<tr>
+<td style="text-align: left;">press_name</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">例如:<code>人民出版</code></td>
+<td style="text-align: left;"><del>出版社名称</del>(属性字段过期测试)</td>
+</tr>
+<tr>
+<td style="text-align: left;">comment</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">例如:<code>不错</code></td>
+<td style="text-align: left;">图书的评论</td>
+</tr>
+</tbody>
+</table>
+<h3>返回数据</h3>
+<pre><code>{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "total": 1,
+        "per_page": 1,
+        "current_page": 1,
+        "last_page": 1,
+        "data": [
+            {
+                "id": 3,
+                "title": "C程序设计语言",
+                "press_id": 1,
+                "author_data": [
+                    {
+                        "id": 3,
+                        "name": "Dennis M. Ritchie",
+                        "info": "C语言发明者"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Brian W. Kernighan",
+                        "info": "计算机专家"
+                    }
+                ],
+                "press_data": {
+                    "id": 1,
+                    "name": "中国人民出版社"
+                },
+                "comment_data": [
+                    {
+                        "id": 1,
+                        "book_id": 3,
+                        "content": "非常不错的C语言教材"
+                    },
+                    {
+                        "id": 2,
+                        "book_id": 3,
+                        "content": "太好了"
+                    }
+                ]
+            }
+        ]
+    }
+}</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">参数名称</th>
+<th style="text-align: center;">参数类型</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">编码</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">提示信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">data</td>
+<td style="text-align: center;">Object</td>
+<td style="text-align: left;">数据</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.total</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">总数</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.per_page</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">每页大小</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.current_page</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">当前页</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.last_page</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">最后页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data</td>
+<td style="text-align: center;">Array</td>
+<td style="text-align: left;">数据</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.id</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">图书id</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.title</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">图书标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.press_id</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">出版社id</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.author_data</td>
+<td style="text-align: center;">Array(Author)</td>
+<td style="text-align: left;">作者信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.author_data.id</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">作者id</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.author_data.name</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">作者名字</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.author_data.info</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">基本信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.press_data</td>
+<td style="text-align: center;">Object(Press)</td>
+<td style="text-align: left;">出版社信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.press_data.id</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">出版社id</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.press_data.name</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">出版社名字</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.comment_data</td>
+<td style="text-align: center;">Array(BookComment)</td>
+<td style="text-align: left;">图书的评论</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.comment_data.id</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">评论的id</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.comment_data.book_id</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">图书的id</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.data.comment_data.content</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">图书评论的内容</td>
+</tr>
+</tbody>
+</table>

@@ -16,6 +16,8 @@ class AutoDocument
 
     protected $classFileMaps = [];
 
+    protected static $DOC_PATH = PUBLIC_PATH."/doc/";
+
     const noFound = '`不确定`';
     /**
      * api文档的格式
@@ -181,12 +183,30 @@ class AutoDocument
 
         if (Request::param(self::$flag_field) == 2){
             $mention = new \Parsedown();
-            echo $mention->text($template);
+            $html =  $mention->text($template);
+            echo $html;
+            $head = "<head>
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">
+</head>";
+            file_put_contents($this->getWriteDocPath('html'),$head."\n".$html);
             die();
+        }elseif(Request::param(self::$flag_field) == 1) {
+            file_put_contents($this->getWriteDocPath('md'), $template);
         }
-        file_put_contents('comment.txt', $template);
         return $template;
     }
+
+    protected function getWriteDocPath($type = 'html')
+    {
+        $dirPath = str_replace(".","/",Request::baseUrl());
+        $dir = str_replace("//","/",self::$DOC_PATH."$type/" . pathinfo($dirPath,PATHINFO_DIRNAME));
+        if (!is_dir($dir)){
+            mkdir($dir,0777,true);
+        }
+        $path = $dir."/".Request::action().".$type";
+        return $path;
+    }
+
 
     /**
      * 获取数据的类型
