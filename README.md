@@ -72,6 +72,18 @@ public function getLocalKey()
 
 注释掉 protected function baseQuery()方法, 否则会影响多对多搜索
 
+增加
+```
+    /**
+     * 获取中间表的名称或者别名
+     * @return string
+     */
+    public function getMiddle()
+    {
+        return $this->middle;
+    }
+```
+
 ### 功能测试
 
 下载本工程到本地，用nginx启动项目，nginx增加配置

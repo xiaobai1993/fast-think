@@ -58,6 +58,10 @@ class BelongsToMany extends Relation
         $this->pivot = $this->newPivot();
     }
 
+    /**
+     * 获取中间表的名称或者别名
+     * @return string
+     */
     public function getMiddle()
     {
         return $this->middle;
