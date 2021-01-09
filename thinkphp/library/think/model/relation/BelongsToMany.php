@@ -58,6 +58,11 @@ class BelongsToMany extends Relation
         $this->pivot = $this->newPivot();
     }
 
+    public function getMiddle()
+    {
+        return $this->middle;
+    }
+
     /**
      * 设置中间表模型
      * @access public
